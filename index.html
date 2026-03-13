@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>剧韵空间-民族云AR测试</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    
+    <style>
+        /* 隐藏 AR.js 默认的调试面板和加载提示，让画面更干净 */
+        .arjs-loader {
+            height: 100%; width: 100%; position: absolute; 
+            top: 0; left: 0; background-color: rgba(0, 0, 0, 0.8);
+            display: flex; justify-content: center; align-items: center; z-index: 999;
+        }
+        .arjs-loader div { text-align: center; color: white; font-size: 1.2em; }
+    </style>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene 
+        embedded 
+        arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+        vr-mode-ui="enabled: false">
+      
+        <a-assets>
+            <a-asset-item id="test-model" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"></a-asset-item>
+        </a-assets>
+
+        <a-marker preset="hiro">
+            <a-entity 
+                gltf-model="#test-model" 
+                scale="0.5 0.5 0.5" 
+                position="0 0 0"
+                rotation="0 0 0"
+                animation-mixer> 
+            </a-entity>
+            
+            <a-text 
+                value="民族云AR加载成功\n请观察宇航员动画" 
+                position="0 1.2 0" 
+                color="#FFD700" 
+                align="center" 
+                width="3"
+                font="https://cdn.aframe.io/fonts/Exo2Bold.fnt">
+            </a-text>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+</body>
+</html>
